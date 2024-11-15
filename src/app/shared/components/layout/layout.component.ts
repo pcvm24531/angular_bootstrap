@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { FooterComponent } from '../footer/footer.component';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';//Para navegar dentro de nuestra aplicación
 
 @Component({
   selector: 'app-layout',
