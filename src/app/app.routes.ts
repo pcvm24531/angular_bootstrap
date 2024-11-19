@@ -37,6 +37,10 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'login',
+    loadComponent: ()=>import('./store/authentication/login/login.component')
+  },
+  {
     path:'**',
     redirectTo:'dashboard'
   }
