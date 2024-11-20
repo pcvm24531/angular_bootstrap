@@ -8,7 +8,7 @@ import { Observable, tap } from 'rxjs';
 })
 export class AuthService {
   private LOGIN_URL="http://localhost:3000/api/login";
-  private tokenkey = 'authToken';
+  private tokenkey = 'tokenJS';
 
   constructor( private httpClient: HttpClient, private router: Router) { }
 

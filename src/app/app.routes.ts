@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
+import { AuthenticatedGuard } from './core/guards/authenticated.guard';
 
 export const routes: Routes = [
   {
@@ -7,27 +9,33 @@ export const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadComponent: () => import('./store/dashboard/dashboard.component')
+        loadComponent: () => import('./store/dashboard/dashboard.component'),
+        canActivate: [AuthGuard]
       },
       {
         path: 'client',
-        loadComponent: ()=>import('./store/client/client.component')
+        loadComponent: ()=>import('./store/client/client.component'),
+        canActivate: [AuthGuard]
       },
       {
         path: 'product',
-        loadComponent: ()=>import('./store/product/product.component')
+        loadComponent: ()=>import('./store/product/product.component'),
+        canActivate: [AuthGuard]
       },
       {
         path: 'user',
-        loadComponent: ()=>import('./store/user/user.component')
+        loadComponent: ()=>import('./store/user/user.component'),
+        canActivate: [AuthGuard]
       },
       {
         path: 'sale',
-        loadComponent:()=>import('./store/sale/sale.component')
+        loadComponent:()=>import('./store/sale/sale.component'),
+        canActivate: [AuthGuard]
       },
       {
         path: 'profile',
-        loadComponent:()=>import('./store/profile/profile.component')
+        loadComponent:()=>import('./store/profile/profile.component'),
+        canActivate: [AuthGuard]
       },
       {
         path:'',
@@ -38,7 +46,8 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    loadComponent: ()=>import('./store/authentication/login/login.component')
+    loadComponent: ()=>import('./store/authentication/login/login.component'),
+    canActivate: [AuthenticatedGuard]
   },
   {
     path:'**',

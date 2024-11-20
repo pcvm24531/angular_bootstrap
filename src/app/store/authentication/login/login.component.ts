@@ -15,10 +15,13 @@ export default class LoginComponent {
   username: string = '';
   password: string = '';
 
-  //Creamos el método constructor
+  //Creamos el método constructor, invocamos al servicio para conectar con node, Router para redirigir
   constructor(private authServie: AuthService, private router: Router){
 
   }
+
+  //Metodo que invoca el login del authService
+  //Se accede desde el boton del formulario
   login(): void{
     this.authServie.login(this.username, this.password).subscribe({
       next: ()=>this.router.navigate(['/dashboard']),
