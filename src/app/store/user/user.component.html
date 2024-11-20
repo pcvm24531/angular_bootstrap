@@ -1,1 +1,7 @@
-<p>user works!</p>
+<div *ngIf="loading">Cargando usuarios...</div>
+
+<div *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</div>
+
+
