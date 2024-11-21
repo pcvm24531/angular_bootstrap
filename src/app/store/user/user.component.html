@@ -1,7 +1,42 @@
-<div *ngIf="loading">Cargando usuarios...</div>
+<div class="p-6 overflow-x-scroll px-0 pt-0 pb-2">
+  <table class="w-full min-w-[640px] table-auto">
+    <thead>
+      <tr>
+        <th class="border-b border-blue-gray-50 py-3 px-6 text-left">
+          <p class="block antialiased font-sans text-[11px]
+          font-medium uppercase text-blue-gray-400">Nombre</p>
+        </th>
+        <th class="border-b border-blue-gray-50 py-3 px-6 text-left">
+          <p class="block antialiased font-sans text-[11px]
+          font-medium uppercase text-blue-gray-400">Teléfono</p>
+        </th>
+        <th class="border-b border-blue-gray-50 py-3 px-6 text-left">
+          <p class="block antialiased font-sans text-[11px]
+          font-medium uppercase text-blue-gray-400">Cargo</p>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *[ngFor]="let user of users">
+        <td class="py-3 px-5 border-b border-blue-gray-50">
+          <div class="flex items-center gap-4">
+            <p class="block antialiased font-sans text-sm leading-normal
+            text-blue-gray-900 font-bold">{{ users }}</p>
+          </div>
+        </td>
 
-<div *ngIf="errorMessage" class="error">
-  {{ errorMessage }}
+        <td class="py-3 px-5 border-b border-blue-gray-50">
+          <p class="block antialiased font-sans text-xs font-medium text-blue-gray-600">$14,000</p>
+        </td>
+        <td class="py-3 px-5 border-b border-blue-gray-50">
+          <div class="w-10/12">
+            <p class="antialiased font-sans mb-1 block text-xs font-medium text-blue-gray-600">60%</p>
+            <div class="flex flex-start bg-blue-gray-50 overflow-hidden w-full rounded-sm font-sans text-xs font-medium h-1">
+              <div class="flex justify-center items-center h-full bg-gradient-to-tr from-blue-600 to-blue-400 text-white" style="width: 60%;"></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
-

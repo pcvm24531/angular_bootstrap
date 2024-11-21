@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from "@angular/common";
 import { UserService } from '../../core/service/user.service';
 
 @Component({
@@ -10,17 +11,19 @@ import { UserService } from '../../core/service/user.service';
 })
 export default class UserComponent implements OnInit{
   users: any[] = [];
-  loading: boolean = false;
+  loading: boolean = true;
   errorMessage: String | null = null;
 
   constructor(private userService: UserService){}
+
+
 
   //Sobre escribimos el métos ngOnInit()
   ngOnInit(): void {
     this.fetchUsers();
   }
 
-  private fetchUsers(): void{
+  fetchUsers(): void{
     this.loading = true;
     this.userService.getAllUsers().subscribe( {
       next: (response)=>{
