@@ -15,14 +15,6 @@ export class UserService {
 
   //Método que obtiene todos los usuarios
   getAllUsers(): Observable<any>{
-    return this.httpClient.get<any>( this.USER_URL ).pipe(
-      tap(response =>{
-        console.log('Usuairos obtenidos:', response);
-      }),
-      catchError((error)=>{
-        console.log('Error al obtener usuraios:'+error);
-        return throwError( ()=>new Error('No se pudo obtener los usuarios') );
-      })
-    )
+    return this.httpClient.get<any>(this.USER_URL);
   }
 }
