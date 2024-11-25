@@ -1,6 +1,9 @@
-<button type="button"
-  class="bg-blue-500 hover:bg-blue-600 text-white
-  font-semibold rounded-md py-2 px-4 w-full"
+<button
+  type="button"
+  (click)="onclick($event)"
   >
-{{buttonName}}
+  @if ( iconName !== '' ) {
+    <mat-icon aria-hidden="false" aria-label="Example home icon" [fontIcon]="iconName"></mat-icon>
+  }
+  {{buttonName}}
 </button>

@@ -1,14 +1,15 @@
 import { Component, Input } from '@angular/core';
+import { ButtonComponent } from "../button/button.component";
 
 @Component({
   selector: 'app-title',
   standalone: true,
-  imports: [],
+  imports: [ButtonComponent],
   templateUrl: './title.component.html',
   styleUrl: './title.component.css'
 })
 export class TitleComponent {
 
-  @Input() componentTitle: string = '';
+  @Input() tittleName: string = 'Títutlo';
 
 }

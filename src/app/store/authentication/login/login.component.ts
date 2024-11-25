@@ -1,20 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthService } from '../../../core/service/auth.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
+import { TitleComponent } from "../../../shared/components/title/title.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule, ButtonComponent],
+  imports: [FormsModule, CommonModule, ButtonComponent, TitleComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export default class LoginComponent {
   username: string = '';
   password: string = '';
+  tittleName: string = '';
   buttonName: string = '';
 
   //Creamos el método constructor, invocamos al servicio para conectar con node, Router para redirigir
@@ -22,10 +24,6 @@ export default class LoginComponent {
 
   }
 
-  //Funcion que stable cel nombrte del boton
-  setButtonName(){
-    return this.buttonName='Ingresar';
-  }
 
   //Metodo que invoca el login del authService
   //Se accede desde el boton del formulario
