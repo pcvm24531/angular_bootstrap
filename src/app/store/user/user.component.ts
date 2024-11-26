@@ -16,7 +16,6 @@ export default class UserComponent implements OnInit{
   loading: boolean = true;//Controlamos la carga de datos
   errorMessage: String | null = null;//Alamcenamos mensajes de error
 
-
   constructor(private userService: UserService){}
 
   //Sobre escribimos el métos ngOnInit()
