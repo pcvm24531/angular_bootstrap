@@ -15,8 +15,6 @@ export default class UserComponent implements OnInit{
   users: any[] = [];//alamcenamos la lista de usuarios
   loading: boolean = true;//Controlamos la carga de datos
   errorMessage: String | null = null;//Alamcenamos mensajes de error
-  componentTitle = '';
-  buttonName = '';
 
 
   constructor(private userService: UserService){}
@@ -26,7 +24,7 @@ export default class UserComponent implements OnInit{
     this.fetchUsers();
   }
 
-  //unción que obtiene los usuarios
+  //Función que obtiene los usuarios
   fetchUsers(): void{
     this.loading = true;
     this.userService.getAllUsers().subscribe( {
