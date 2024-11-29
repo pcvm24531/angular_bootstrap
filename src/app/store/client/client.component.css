@@ -1,8 +1,0 @@
-section{
-  display: flex;
-  justify-content: space-between;
-}
-label{
-  font-size: 25px;
-  font-weight: bolder;
-}

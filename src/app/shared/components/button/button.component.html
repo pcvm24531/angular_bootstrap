@@ -1,6 +1,7 @@
 <button
-  type="button"
+  [type]="typeButton"
   (click)="onclick($event)"
+  [style.background]="buttonColor"
   >
   @if ( iconName !== '' ) {
     <mat-icon aria-hidden="false" aria-label="Example home icon" [fontIcon]="iconName"></mat-icon>

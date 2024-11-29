@@ -1,0 +1,44 @@
+
+<section>
+  <app-title [tittleName]="'Nuevo Cliente'"></app-title>
+</section>
+
+<section>
+  <div class="px-4">
+    <form action="#" method="post" [formGroup]="createClientForm" (ngSubmit)="saveClient()" >
+
+      <label for="name"  >Nombre</label>
+      <input type="text" id="name" name="name" placeholder="Nombre" autocomplete="off" />
+      @if( createClientForm.get('name')?.invalid && createClientForm.get('name')?.touched ){
+        @if(createClientForm.get('name')?.hasError('required')){
+          <span>El campo es obligatorio</span>
+        }
+      }
+
+      <label for="lastname" >Apellido</label>
+      <input type="text" id="lastname" name="lastname" placeholder="Apellido" autocomplete="off" />
+      @if( createClientForm.get('lastname')?.invalid && createClientForm.get('lastname')?.touched ){
+        @if(createClientForm.get('lastname')?.hasError('required')){
+          <span>El campo es obligatorio</span>
+        }
+      }
+
+      <label for="ci" >CI / NIT</label>
+      <input type="text" id="ci" name="ci" placeholder="CI / NIT" autocomplete="off" />
+      @if( createClientForm.get('ci')?.invalid && createClientForm.get('ci')?.touched ){
+        @if(createClientForm.get('ci')?.hasError('required')){
+          <span>El campo es obligatorio</span>
+        }
+        @if(createClientForm.get('ci')?.hasError('pattern')){
+          <span>Formato incorrecto</span>
+        }
+      }
+
+      <div class="py-2 flex items-center space-x-4">
+        <app-button [buttonName]="'Guardar'" [iconName]="'save'"  [buttonColor]="'green'" [typeButton]="'submit'" />
+        <app-button [buttonName]="'Cerrar'" [iconName]="'close'" (eventClick)="close()" [buttonColor]="'red'" />
+      </div>
+
+    </form>
+  </div>
+</section>
