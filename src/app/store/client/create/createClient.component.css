@@ -1,10 +1,12 @@
 section{
   padding: 25px;
+  display: block;
 }
 label{
   font-size: 15px;
 }
 input[type=text],input[type=number]{
+  flex: 1;
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;

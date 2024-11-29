@@ -14,41 +14,36 @@ import { ClientService } from '../../../core/service/client.service';
 })
 export class CreateClientComponent {
 
-  createClientForm!: FormGroup<any>;
+  createClientForm: FormGroup = new FormGroup({
+    name: new FormControl(
+      '',
+      [Validators.required]
+    ),
+    lastname: new FormControl(
+      '',
+      [Validators.required]
+    ),
+    ci: new FormControl(
+      '',
+      [
+        Validators.required,
+        Validators.pattern('^[0-9]{10}'),
+        Validators.minLength(5),
+        Validators.maxLength(10)
+      ]
+    )
+  });
   isSubmitting: boolean = false;
   errorMessage: string | null = null;
 
   constructor ( private clientService: ClientService, private fb: FormBuilder, private dialogRef: MatDialogRef<CreateClientComponent>){}
 
 
-  ngOnInit(): void{
-    this.createClientForm = this.fb.group({
-      name: ['',[Validators.required]], // Campo obligatorio
-      lastname: ['',[Validators.required]], // Campo obligatorio
-      ci: ['',[Validators.required, Validators.pattern('^[0-9]{10}[A-Z]{3}')]] // Solo números
-    });
-  }
+  valuesClientsForm: any;
 
 
   saveClient(): void {
-    console.log(this.createClientForm);
-    if (this.createClientForm && this.createClientForm.valid) {
-
-      const formData = this.createClientForm.value;
-      // Llamada al servicio para enviar los datos por POST
-      this.clientService.saveClient(formData).subscribe({
-        next: (response) => {
-          console.log('Cliente guardado con éxito:', response);
-          //Limpiamos el formulario
-          this.createClientForm.reset();
-        },
-        error: (error) => {
-          console.error('Error al guardar el cliente:', error);
-        },
-      });
-    } else {
-      console.warn('Formulario inválido');
-    }
+    this.valuesClientsForm = this.createClientForm.value;
   }
 
   close(): void{
