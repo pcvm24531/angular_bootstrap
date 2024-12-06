@@ -3,6 +3,8 @@ import { ButtonComponent } from '../../shared/components/button/button.component
 import { ClientService } from '../../core/service/client.service';
 import { TitleComponent } from '../../shared/components/title/title.component';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateClientComponent } from './create/createClient.component';
 
 @Component({
   selector: 'app-client',
@@ -17,7 +19,7 @@ export default class ClientComponent implements OnInit {
   errorMessage: String = '';
 
   //Cargamos el servicio
-  constructor(private clienService: ClientService){}
+  constructor(private clienService: ClientService, private dialog: MatDialog){}
 
   ngOnInit(): void {
     this.fetchClients();
@@ -38,6 +40,17 @@ export default class ClientComponent implements OnInit {
   }
 
   addClient(event: MouseEvent): void{
-    console.log('Agregar nuevo cliente');
+    const dialogReg = this.dialog.open(CreateClientComponent, {
+      width: '768px',
+      disableClose: true
+    });
+
+    /*
+    dialogReg.afterClosed().subscribe( result => {
+      if (result) {
+        console.log('Nuevo Client', result);
+      }
+    } );
+     */
   }
 }

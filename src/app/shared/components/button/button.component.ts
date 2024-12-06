@@ -12,6 +12,8 @@ export class ButtonComponent {
   //Parámetros del botón
   @Input() buttonName: string = 'Nombre del Botón';
   @Input() iconName: string = 'home';
+  @Input() buttonColor: string = 'btn btn-default';
+  @Input() typeButton: string = 'button';
 
   //Eventos del botón
   @Output() eventClick: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>;

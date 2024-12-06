@@ -72,7 +72,7 @@
           <td class="py-3 px-5 border-b border-blue-gray-50">
             <div class="w-10/12">
               <p class="antialiased font-sans mb-1 block text-xs font-medium text-blue-gray-600">
-                {{ product.expiration_date ? product.expiration_date : '---' }}
+                {{ product.expiration_date ? (product.expiration_date | date:'dd/DD/yyyy') : '---' }}
               </p>
             </div>
           </td>

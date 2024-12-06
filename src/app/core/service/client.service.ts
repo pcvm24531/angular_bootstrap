@@ -16,4 +16,9 @@ export class ClientService {
   getAllClients(): Observable<any>{
     return this.httpClient.get<any>(this.CLIENT_URL);
   }
+
+  //Funcion que envia datos al backent
+  saveClient(newClient: any): Observable<any>{
+    return this.httpClient.post( this.CLIENT_URL, newClient );
+  }
 }
