@@ -5,6 +5,7 @@ import { TitleComponent } from '../../shared/components/title/title.component';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateClientComponent } from './create/createClient.component';
+import { UpdateClientComponent } from './update/updateClient.component';
 
 @Component({
   selector: 'app-client',
@@ -49,6 +50,13 @@ export default class ClientComponent implements OnInit {
       if (event==='clientAdded') {
         this.fetchClients();
       }
+    });
+  }
+
+  editClient(event: MouseEvent): void{
+    const dialogEdit = this.dialog.open(UpdateClientComponent, {
+      width: '768px',
+      disableClose: true
     });
   }
 }
