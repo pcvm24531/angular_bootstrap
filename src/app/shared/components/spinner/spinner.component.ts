@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { SpinnerService } from '../../services/spinner.service';
 
 @Component({
   selector: 'app-spinner',
@@ -8,5 +9,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './spinner.component.css'
 })
 export class SpinnerComponent {
-  @Input() isLoading: boolean = true;
+  private readonly spinnerSvc = inject(SpinnerService);
+  isLoading = this.spinnerSvc.isLoading;
 }

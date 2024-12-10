@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { ClientService } from '../../core/service/client.service';
 import { TitleComponent } from '../../shared/components/title/title.component';
@@ -17,6 +17,7 @@ export default class ClientComponent implements OnInit {
   clients: any[] = [];
   loading: boolean = false;
   errorMessage: String = '';
+  @ViewChild('CreateClientComponent') CreateClientComponent: any;
 
   //Cargamos el servicio
   constructor(private clienService: ClientService, private dialog: MatDialog){}
@@ -44,13 +45,10 @@ export default class ClientComponent implements OnInit {
       width: '768px',
       disableClose: true
     });
-
-    /*
-    dialogReg.afterClosed().subscribe( result => {
-      if (result) {
-        console.log('Nuevo Client', result);
+    dialogReg.componentInstance.clientAdded.subscribe( (event: string)=>{
+      if (event==='clientAdded') {
+        this.fetchClients();
       }
-    } );
-     */
+    });
   }
 }

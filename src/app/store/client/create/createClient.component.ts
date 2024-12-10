@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
 import { ButtonComponent } from "../../../shared/components/button/button.component";
 import { TitleComponent } from "../../../shared/components/title/title.component";
 import { ClientService } from '../../../core/service/client.service';
-import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-create-client',
   standalone: true,
-  imports: [ButtonComponent, TitleComponent, ReactiveFormsModule, SpinnerComponent],
+  imports: [ButtonComponent, TitleComponent, ReactiveFormsModule],
   templateUrl: './createClient.component.html',
   styleUrl: './createClient.component.css'
 })
@@ -38,6 +37,9 @@ export class CreateClientComponent {
   isLoading: boolean = false;
   errorMessage: string | null = null;
 
+  //Output
+  @Output() clientAdded = new EventEmitter<string>();
+
   constructor ( private clientService: ClientService, private fb: FormBuilder, private dialogRef: MatDialogRef<CreateClientComponent>){}
 
 
@@ -57,10 +59,11 @@ export class CreateClientComponent {
       this.clientService.saveClient(formData).subscribe(
         {
           next: (response) => {
+            console.log(this.clientAdded.emit('clientAdded'));
             this.close();
             this.createClientForm.reset();
-            //this.refresClientTable();
             this.isLoading = false;
+            this.clientAdded.emit('clientAdded');//Notificamos al componente padre
           },
           error: (error) => {
             console.log('Error al cuardar el cliente ',error);
