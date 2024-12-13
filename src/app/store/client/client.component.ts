@@ -53,10 +53,16 @@ export default class ClientComponent implements OnInit {
     });
   }
 
-  editClient(event: MouseEvent): void{
+  updateClient(event: MouseEvent, client: any ): void{
     const dialogEdit = this.dialog.open(UpdateClientComponent, {
       width: '768px',
-      disableClose: true
+      disableClose: true,
+      data:client
     });
+    dialogEdit.afterClosed().subscribe(
+      result=>{
+        console.log('Cliente actualizado');
+      }
+    );
   }
 }

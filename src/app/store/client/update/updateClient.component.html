@@ -5,13 +5,12 @@
 
 <section>
   <div class="px-4">
-    <form action="#" method="post"  >
-
+    <form action="#" method="post" [formGroup]="updateClientForm" >
       <div>
         <label for="name"  >Nombre</label>
         <input type="text" id="name" formControlName="name" placeholder="Nombre" autocomplete="off" />
-        @if( createClientForm.get('name')?.invalid && createClientForm.get('name')?.touched ){
-          @if(createClientForm.get('name')?.hasError('required')){
+        @if( updateClientForm.get('name')?.invalid && updateClientForm.get('name')?.touched ){
+          @if(updateClientForm.get('name')?.hasError('required')){
             <div class="text-xs text-red-500">El campo es obligatorio</div>
           }
         }
@@ -20,8 +19,8 @@
       <div>
         <label for="lastname" >Apellido</label>
         <input type="text" id="lastname" formControlName="lastname" placeholder="Apellido" autocomplete="off" />
-        @if ( createClientForm.get('lastname')?.invalid && createClientForm.get('lastname')?.touched ) {
-          @if (createClientForm.get('lastname')?.hasError('required')) {
+        @if ( updateClientForm.get('lastname')?.invalid && updateClientForm.get('lastname')?.touched ) {
+          @if (updateClientForm.get('lastname')?.hasError('required')) {
             <div class="text-xs text-red-500">El campo es obligatorio</div>
           }
         }
@@ -30,11 +29,11 @@
       <div>
         <label for="ci" >CI / NIT</label>
         <input type="text" id="ci" formControlName="ci" placeholder="CI / NIT" autocomplete="off" />
-        @if( createClientForm.get('ci')?.invalid && createClientForm.get('ci')?.touched ){
-          @if(createClientForm.get('ci')?.hasError('required')){
+        @if( updateClientForm.get('ci')?.invalid && updateClientForm.get('ci')?.touched ){
+          @if(updateClientForm.get('ci')?.hasError('required')){
             <div class="text-xs text-red-500">El campo es obligatorio</div>
           }
-          @if(createClientForm.get('ci')?.hasError('pattern')){
+          @if(updateClientForm.get('ci')?.hasError('pattern')){
             <div class="text-xs text-red-500">Formato incorrecto</div>
           }
         }
