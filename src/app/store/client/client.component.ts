@@ -59,10 +59,10 @@ export default class ClientComponent implements OnInit {
       disableClose: true,
       data:client
     });
-    dialogEdit.afterClosed().subscribe(
-      result=>{
-        console.log('Cliente actualizado');
+    dialogEdit.afterClosed().subscribe( (updatedClient)=>{
+      if( updatedClient ){
+        this.fetchClients();
       }
-    );
+    });
   }
 }

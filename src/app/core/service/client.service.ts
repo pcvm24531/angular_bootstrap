@@ -28,6 +28,6 @@ export class ClientService {
 
   //Actualizamos los datos del cliente
   updateClient(id: string, dataClient: any): Observable<any>{
-    return this.httpClient.put( `${this.CLIENT_URL}/id:${id}`, dataClient );
+    return this.httpClient.put( `${this.CLIENT_URL}/${id}`, dataClient );
   }
 }
