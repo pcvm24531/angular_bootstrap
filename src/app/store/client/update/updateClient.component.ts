@@ -5,11 +5,12 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { ClientService } from '../../../core/service/client.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-update-client',
   standalone: true,
-  imports: [TitleComponent, ButtonComponent, ReactiveFormsModule],
+  imports: [TitleComponent, ButtonComponent, ReactiveFormsModule, BrowserAnimationsModule],
   templateUrl: './updateClient.component.html',
   styleUrl: './updateClient.component.css'
 })
@@ -32,10 +33,11 @@ export class UpdateClientComponent {
   }
 
   updateClient(): void{
-    if( this.updateClientForm.valid ){console.log('Estos son data:', this.data);
-      this.clientService.updateClient(this.data.id, this.updateClientForm.value).subscribe(
+    if( this.updateClientForm.valid ){
+      this.clientService.updateClient(this.data._id, this.updateClientForm.value).subscribe(
         {
           next: (response)=>{
+            console.log('Esto es respuesta: ',response);
             this.snackBar.open('Cliente actualizado con éxito', 'Cerrar', {duration: 3000}),
             this.dialogRef.close(response);
           },
