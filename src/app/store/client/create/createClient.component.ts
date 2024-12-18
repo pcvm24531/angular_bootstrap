@@ -59,7 +59,6 @@ export class CreateClientComponent {
       this.clientService.saveClient(formData).subscribe(
         {
           next: (response) => {
-            console.log(this.clientAdded.emit('clientAdded'));
             this.close();
             this.createClientForm.reset();
             this.isLoading = false;
