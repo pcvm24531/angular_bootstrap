@@ -40,7 +40,6 @@ export default class ClientComponent implements OnInit {
       }
     });
   }
-
   addClient(event: MouseEvent): void{
     const dialogReg = this.dialog.open(CreateClientComponent, {
       width: '768px',
@@ -59,8 +58,8 @@ export default class ClientComponent implements OnInit {
       disableClose: true,
       data:client
     });
-    dialogEdit.afterClosed().subscribe( (updatedClient)=>{
-      if( updatedClient ){
+    dialogEdit.componentInstance.clientUpdated.subscribe( (event: string)=>{
+      if( event==='clientUpdated' ){
         this.fetchClients();
       }
     });
