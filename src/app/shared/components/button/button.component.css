@@ -1,0 +1,15 @@
+button{
+  background-color: black;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  color: white;
+  border: none;
+  gap: 5px;
+  padding: 7px;
+  padding-right: 15px;
+
+  .mat-icon{
+    font-size: 1.4rem;
+  }
+}

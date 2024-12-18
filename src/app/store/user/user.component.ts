@@ -15,21 +15,15 @@ export default class UserComponent implements OnInit{
   users: any[] = [];//alamcenamos la lista de usuarios
   loading: boolean = true;//Controlamos la carga de datos
   errorMessage: String | null = null;//Alamcenamos mensajes de error
-  componentTitle = '';
-
 
   constructor(private userService: UserService){}
-
-  //Asignamos el título al componente
-  setComponentTitle(){
-    return this.componentTitle = 'Usuarios';
-  }
 
   //Sobre escribimos el métos ngOnInit()
   ngOnInit(): void {
     this.fetchUsers();
   }
 
+  //Función que obtiene los usuarios
   fetchUsers(): void{
     this.loading = true;
     this.userService.getAllUsers().subscribe( {
@@ -43,4 +37,10 @@ export default class UserComponent implements OnInit{
       }
     } );
   }
+
+  //Función que hace llamada al modal
+  addUser(event: MouseEvent): void{
+    console.log( 'Cargar modal' );
+  }
+
 }

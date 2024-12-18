@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AuthenticatedGuard } from './core/guards/authenticated.guard';
+import ProfileComponent from './store/profile/profile.component';
+import SaleComponent from './store/sale/sale.component';
+import { CreateClientComponent } from './store/client/create/createClient.component';
 
 export const routes: Routes = [
   {
@@ -15,7 +18,14 @@ export const routes: Routes = [
       {
         path: 'client',
         loadComponent: ()=>import('./store/client/client.component'),
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        children:[
+          {
+            path: 'create',
+            component: CreateClientComponent,
+            canActivate: [AuthGuard]
+          }
+        ],
       },
       {
         path: 'product',
@@ -29,12 +39,12 @@ export const routes: Routes = [
       },
       {
         path: 'sale',
-        loadComponent:()=>import('./store/sale/sale.component'),
+        component: SaleComponent,
         canActivate: [AuthGuard]
       },
       {
         path: 'profile',
-        loadComponent:()=>import('./store/profile/profile.component'),
+        component: ProfileComponent,
         canActivate: [AuthGuard]
       },
       {

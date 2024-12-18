@@ -9,6 +9,6 @@ import { Component, Input } from '@angular/core';
 })
 export class TitleComponent {
 
-  @Input() componentTitle: string = '';
+  @Input() tittleName: string = 'Títutlo';
 
 }

@@ -1,12 +1,25 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-button',
   standalone: true,
-  imports: [],
+  imports: [MatIconModule],
   templateUrl: './button.component.html',
   styleUrl: './button.component.css'
 })
 export class ButtonComponent {
-  @Input() buttonName: string = 'Soy Botón';
+  //Parámetros del botón
+  @Input() buttonName: string = 'Nombre del Botón';
+  @Input() iconName: string = 'home';
+  @Input() buttonColor: string = 'btn btn-default';
+  @Input() typeButton: string = 'button';
+
+  //Eventos del botón
+  @Output() eventClick: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>;
+
+
+  onclick(event: MouseEvent){
+    this.eventClick.emit(event);
+  }
 }
