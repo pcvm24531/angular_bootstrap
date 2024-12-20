@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateClientComponent } from './create/createClient.component';
 import { UpdateClientComponent } from './update/updateClient.component';
+import { ReadClientComponent } from './read/readClient.component';
+import { DeleteClientComponent } from './delete/deleteClient.component';
 
 @Component({
   selector: 'app-client',
@@ -27,6 +29,7 @@ export default class ClientComponent implements OnInit {
     this.fetchClients();
   }
 
+  //Obtenemos la lista de clientes
   fetchClients(): void{
     this.loading = true;
     this.clienService.getAllClients().subscribe({
@@ -40,6 +43,7 @@ export default class ClientComponent implements OnInit {
       }
     });
   }
+
   addClient(event: MouseEvent): void{
     const dialogReg = this.dialog.open(CreateClientComponent, {
       width: '768px',
@@ -61,6 +65,45 @@ export default class ClientComponent implements OnInit {
     dialogEdit.componentInstance.clientUpdated.subscribe( (event: string)=>{
       if( event==='clientUpdated' ){
         this.fetchClients();
+      }
+    });
+  }
+
+  readClient( client: any ){
+    const dialogRead = this.dialog.open( ReadClientComponent,{
+      width: '780px',
+      disableClose: true,
+      data: client
+    } );
+    dialogRead.componentInstance.clientRead.subscribe( (event: string)=>{
+      if( event === 'clientRead'){
+        this.fetchClients();
+      }
+    } );
+  }
+
+  //Eliminamos el cliente
+  confirmDelete(client: any): void{
+    const dialogDelete = this.dialog.open( DeleteClientComponent, {
+      width: '400px',
+      data:{
+        title:'Eliminar CLiente',
+        message:`¿Está seguro que quiere eliminar a ${client.name} ${client.lastname}?`
+      }
+    } );
+    dialogDelete.afterClosed().subscribe( result=>{
+      if(result){
+        this.deleteClient(client.id);
+      }
+    } );
+  }
+  deleteClient(id: string): void{
+    this.clienService.deleteClient(id).subscribe({
+      next: ()=>{
+        this.clients = this.clients.filter(client=>client!==id)
+      },
+      error:(err)=>{
+        console.log(`Error al eliminar al cliente`);
       }
     });
   }
