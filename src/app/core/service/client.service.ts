@@ -30,4 +30,9 @@ export class ClientService {
   updateClient(id: string, dataClient: any): Observable<any>{
     return this.httpClient.put( `${this.CLIENT_URL}/${id}`, dataClient );
   }
+
+  //Eliminar cliente
+  deleteClient(id: string): Observable<any>{
+    return this.httpClient.delete( `${this.CLIENT_URL}/${id}` );
+  }
 }

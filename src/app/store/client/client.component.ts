@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateClientComponent } from './create/createClient.component';
 import { UpdateClientComponent } from './update/updateClient.component';
+import { ReadClientComponent } from './read/readClient.component';
+import { DeleteClientComponent } from './delete/deleteClient.component';
 
 @Component({
   selector: 'app-client',
@@ -27,6 +29,7 @@ export default class ClientComponent implements OnInit {
     this.fetchClients();
   }
 
+  //Obtenemos la lista de clientes
   fetchClients(): void{
     this.loading = true;
     this.clienService.getAllClients().subscribe({
@@ -40,6 +43,8 @@ export default class ClientComponent implements OnInit {
       }
     });
   }
+
+  //Agregaos nuevo cliente
   addClient(event: MouseEvent): void{
     const dialogReg = this.dialog.open(CreateClientComponent, {
       width: '768px',
@@ -52,6 +57,7 @@ export default class ClientComponent implements OnInit {
     });
   }
 
+  //Actualizamos el cliente
   updateClient(event: MouseEvent, client: any ): void{
     const dialogEdit = this.dialog.open(UpdateClientComponent, {
       width: '768px',
@@ -64,4 +70,33 @@ export default class ClientComponent implements OnInit {
       }
     });
   }
+
+  //Leemos el cliente
+  readClient( client: any ){
+    const dialogRead = this.dialog.open( ReadClientComponent,{
+      width: '780px',
+      disableClose: true,
+      data: client
+    } );
+    dialogRead.componentInstance.clientRead.subscribe( (event: string)=>{
+      if( event === 'clientRead'){
+        this.fetchClients();
+      }
+    } );
+  }
+
+  //Eliminamos el cliente
+  deleteClient(event: MouseEvent, client: any){
+    const dialogDelete = this.dialog.open( DeleteClientComponent, {
+      width: '780px',
+      disableClose: true,
+      data: client
+    } );
+    dialogDelete.componentInstance.clientDeleted.subscribe( (event: string)=>{
+      if( event === 'clientDeleted'){
+        this.fetchClients();
+      }
+    });
+  }
+
 }
