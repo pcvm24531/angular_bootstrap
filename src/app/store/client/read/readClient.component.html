@@ -1,0 +1,28 @@
+<section>
+  <app-title [tittleName]="'Información de Cliente'" />
+</section>
+
+<section>
+  <div class="px-4">
+    <div class="mt-6 border-t border-gray-100">
+      <dl class="divide-y divide-gray-100">
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm/6 font-medium text-gray-900">Nombres</dt>
+          <dd class="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">{{data.name}}</dd>
+        </div>
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm/6 font-medium text-gray-900">Apellidos</dt>
+          <dd class="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">{{data.lastname}}</dd>
+        </div>
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm/6 font-medium text-gray-900">NIT / CI</dt>
+          <dd class="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">{{data.ci}}</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="py-2 flex items-center space-x-4">
+    <app-button [buttonName]="'Cerrar'" [iconName]="'close'" (eventClick)="close()" [buttonColor]="'red'" />
+  </div>
+</section>
