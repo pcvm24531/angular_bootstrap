@@ -33,6 +33,6 @@ export class ClientService {
 
   //Eliminar cliente
   deleteClient(id: string): Observable<any>{
-    return this.httpClient.delete( `${this.CLIENT_URL}/id:${id}` );
+    return this.httpClient.delete( `${this.CLIENT_URL}/${id}` );
   }
 }

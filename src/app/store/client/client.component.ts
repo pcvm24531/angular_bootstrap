@@ -44,6 +44,7 @@ export default class ClientComponent implements OnInit {
     });
   }
 
+  //Agregaos nuevo cliente
   addClient(event: MouseEvent): void{
     const dialogReg = this.dialog.open(CreateClientComponent, {
       width: '768px',
@@ -56,6 +57,7 @@ export default class ClientComponent implements OnInit {
     });
   }
 
+  //Actualizamos el cliente
   updateClient(event: MouseEvent, client: any ): void{
     const dialogEdit = this.dialog.open(UpdateClientComponent, {
       width: '768px',
@@ -69,6 +71,7 @@ export default class ClientComponent implements OnInit {
     });
   }
 
+  //Leemos el cliente
   readClient( client: any ){
     const dialogRead = this.dialog.open( ReadClientComponent,{
       width: '780px',
@@ -83,28 +86,17 @@ export default class ClientComponent implements OnInit {
   }
 
   //Eliminamos el cliente
-  confirmDelete(client: any): void{
+  deleteClient(event: MouseEvent, client: any){
     const dialogDelete = this.dialog.open( DeleteClientComponent, {
-      width: '400px',
-      data:{
-        title:'Eliminar CLiente',
-        message:`¿Está seguro que quiere eliminar a ${client.name} ${client.lastname}?`
-      }
+      width: '780px',
+      disableClose: true,
+      data: client
     } );
-    dialogDelete.afterClosed().subscribe( result=>{
-      if(result){
-        this.deleteClient(client.id);
-      }
-    } );
-  }
-  deleteClient(id: string): void{
-    this.clienService.deleteClient(id).subscribe({
-      next: ()=>{
-        this.clients = this.clients.filter(client=>client!==id)
-      },
-      error:(err)=>{
-        console.log(`Error al eliminar al cliente`);
+    dialogDelete.componentInstance.clientDeleted.subscribe( (event: string)=>{
+      if( event === 'clientDeleted'){
+        this.fetchClients();
       }
     });
   }
+
 }

@@ -1,1 +1,15 @@
-<p>delete-client works!</p>
+<section>
+  <app-title [tittleName]="'Eliminar Cliente'" />
+</section>
+<section>
+  <div class="px-4">
+    <label class="block text-sm font-medium text-gray-700">Realmente desea eliminar el usuario?</label>
+  </div>
+
+  <div class="py-2 flex items-center space-x-4">
+    <app-button [buttonName]="'Cancelar'" [iconName]="'close'"
+      (eventClick)="close()" [buttonColor]="'red'" />
+    <app-button [buttonName]="'Eliminar'" [iconName]="'delete'"
+      (eventClick)="deletedClient()" [buttonColor]="'red'" />
+  </div>
+</section>
