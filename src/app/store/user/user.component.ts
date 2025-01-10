@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { UserService } from '../../core/service/user.service';
 import { ButtonComponent } from "../../shared/components/button/button.component";
 import { TitleComponent } from '../../shared/components/title/title.component';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateUserComponent } from './create/createUser.component';
 
 @Component({
   selector: 'app-user',
@@ -16,7 +18,7 @@ export default class UserComponent implements OnInit{
   loading: boolean = true;//Controlamos la carga de datos
   errorMessage: String | null = null;//Alamcenamos mensajes de error
 
-  constructor(private userService: UserService){}
+  constructor(private userService: UserService, private dialog: MatDialog){}
 
   //Sobre escribimos el métos ngOnInit()
   ngOnInit(): void {
@@ -40,7 +42,15 @@ export default class UserComponent implements OnInit{
 
   //Función que hace llamada al modal
   addUser(event: MouseEvent): void{
-    console.log( 'Cargar modal' );
+    const dialogAdd = this.dialog.open(CreateUserComponent, {
+      width: '768px',
+      disableClose: true
+    });
+    dialogAdd.componentInstance.userAdded.subscribe( (event: string)=>{
+      if( event ==='userAdded'){
+        this.fetchUsers();
+      }
+    } );
   }
 
 }
