@@ -4,6 +4,7 @@ import { AuthenticatedGuard } from './core/guards/authenticated.guard';
 import ProfileComponent from './store/profile/profile.component';
 import SaleComponent from './store/sale/sale.component';
 import { CreateClientComponent } from './store/client/create/createClient.component';
+import UserComponent from './store/user/user.component';
 
 export const routes: Routes = [
   {
@@ -34,7 +35,7 @@ export const routes: Routes = [
       },
       {
         path: 'user',
-        loadComponent: ()=>import('./store/user/user.component'),
+        component: UserComponent,
         canActivate: [AuthGuard]
       },
       {

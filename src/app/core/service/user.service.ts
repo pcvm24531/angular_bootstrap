@@ -17,4 +17,8 @@ export class UserService {
   getAllUsers(): Observable<any>{
     return this.httpClient.get<any>(this.USER_URL);
   }
+  //Método que guarda un nuevo usuario
+  saveUser(newUser: any): Observable<any>{
+    return this.httpClient.post<any>(this.USER_URL, newUser)
+  }
 }
