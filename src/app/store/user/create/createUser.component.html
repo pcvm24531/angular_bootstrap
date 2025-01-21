@@ -27,7 +27,7 @@
 
       <div>
         <label for="ci">CI</label>
-        <input type="text" id="ci" formControlName="CI" placeholder="CI"/>
+        <input type="text" id="ci" formControlName="ci" placeholder="CI"/>
         @if( createUserForm.get('ci')?.invalid && createUserForm.get('ci')?.touched ){
           @if(createUserForm.get('ci')?.hasError('required')){
             <div class="text-xs text-red-500">El campo es obligatorio</div>
@@ -47,6 +47,78 @@
           }
         }
       </div>
+
+      <div>
+        <label form="password">Contraseña</label>
+        <input type="password" id="password" formControlName="password" placeholder="Contraseña" />
+        @if ( createUserForm.get('password')?.invalid && createUserForm.get('password')?.touched ) {
+          @if (createUserForm.get('password')?.hasError('required')) {
+            <div class="text-xs text-red-500">El campo es obligatorio</div>
+          }
+        }
+      </div>
+
+      <div>
+        <label form="phone">Celular</label>
+        <input type="number" id="phone" formControlName="phone" placeholder="Celular"/>
+        @if( createUserForm.get('phonr')?.invalid && createUserForm.get('phone')?.touched ){
+          @if(createUserForm.get('phone')?.hasError('required')){
+            <div class="text-xs text-red-500">El campo es obligatorio</div>
+          }
+          @if(createUserForm.get('phone')?.hasError('pattern')){
+            <div class="text-xs text-red-500">Formato incorrecto</div>
+          }
+        }
+      </div>
+
+      <div>
+        <label form="address">Dirección</label>
+        <input type="text" id="address" formControlName="address" placeholder="Dirección" />
+        @if( createUserForm.get('address')?.invalid && createUserForm.get('address')?.touched ){
+          @if(createUserForm.get('address')?.hasError('required')){
+            <div class="text-xs text-red-500">El campo es obligatorio</div>
+          }
+        }
+      </div>
+
+      <div>
+        <label form="birthdate">Fecha de Naciemiento</label>
+        <input type="date" id="birthdate" formControlName="birthdate" placeholder="Fecha de Nacimiento" />
+        @if( createUserForm.get('birthdate')?.invalid && createUserForm.get('birthdate')?.touched ){
+          @if(createUserForm.get('birthdate')?.hasError('required')){
+            <div class="text-xs text-red-500">El campo es obligatorio</div>
+          }
+        }
+        </div>
+
+        <div>
+          <label for="user_type">Tipo de usuario</label>
+          <select id="user_type" formControlName="user_type">
+            <option value="">--Seleccione--</option>
+            <option value="admin">Administrador</option>
+            <option value="farma">Farmacéutico</option>
+            <option value="cajero">Cajero</option>
+            <option value="alma">Almacenista</option>
+          </select>
+          @if( createUserForm.get('user_type')?.invalid && createUserForm.get('user_type')?.touched ){
+            @if(createUserForm.get('user_type')?.hasError('required')){
+              <div class="text-xs text-red-500">El campo es obligatorio</div>
+            }
+          }
+        </div>
+
+        <div>
+          <label for="photo">Foto</label>
+          <input type="file" id="photo" formControlName="photo" />
+          @if ( createUserForm.get('photo')?.invalid ) {
+            <div class="text-xs text-red-500">Seleccione una imagen!</div>
+          }
+        </div>
+
+        <div class="py-2 flex items-center space-x-4">
+          <app-button [buttonName]="'Guardar'" [iconName]="'save'"  [buttonColor]="'green'" [typeButton]="'submit'" (eventClick)="saveUser()" />
+          <app-button [buttonName]="'Cerrar'" [iconName]="'close'" (eventClick)="close()" [buttonColor]="'red'" />
+        </div>
 
     </form>
   </div>

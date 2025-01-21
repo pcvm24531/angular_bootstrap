@@ -5,7 +5,7 @@ section{
 label{
   font-size: 15px;
 }
-input[type=text],input[type=number]{
+input[type=text],input[type=number],input[type=password], input[type=date], select{
   flex: 1;
   width: 100%;
   padding: 12px 20px;
