@@ -9,7 +9,13 @@ import { AuthService } from '../../../core/service/auth.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  user:any = null;
+
   constructor(private authService: AuthService){}
+
+  ngOnInit(){
+    console.log( 'This user is:',this.authService.userData$ );
+  }
 
   //Creamos funcion para cerrar session
   logout(): void{
