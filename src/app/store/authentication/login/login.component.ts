@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AuthService } from '../../../core/service/auth.service';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { TitleComponent } from "../../../shared/components/title/title.component";
@@ -20,6 +20,7 @@ export default class LoginComponent {
   tittleName: string = '';
   buttonName: string = '';
   typeButton: string = 'submit';
+
 
   isLoading: boolean = false;
   errorMessage: string = "";
@@ -40,12 +41,10 @@ export default class LoginComponent {
   //Metodo que invoca el login del authService
   //Se accede desde el boton del formulario
   login(): void{
-    console.log(this.loginForm.value);
-    //Verificamos que no esten vacios
-    /*if( this.username && this.password ){
-      this.isLoading=true;
-      this.errorMessage = '';
-      this.authServie.login(this.username, this.password).subscribe(
+    //Verificamos si los datos del formulario se completaron
+    if( this.loginForm.value ){
+      //Hacemos la verificación del login
+      this.authServie.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(
         {
           next: ()=>{
             this.isLoading = false;
@@ -60,6 +59,6 @@ export default class LoginComponent {
     }else{
       this.isLoading = false;
       this.errorMessage='Debe ingresar su Usuario y Contraseña!';
-    }*/
+    }
   }
 }
