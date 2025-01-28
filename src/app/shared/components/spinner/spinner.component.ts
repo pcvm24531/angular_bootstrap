@@ -1,14 +1,13 @@
-import { Component, inject } from '@angular/core';
-import { SpinnerService } from '../../services/spinner.service';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: 'app-spinner',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './spinner.component.html',
   styleUrl: './spinner.component.css'
 })
 export class SpinnerComponent {
-  private readonly spinnerSvc = inject(SpinnerService);
-  isLoading = this.spinnerSvc.isLoading;
+  @Input() isLoading: boolean = false;
 }
