@@ -20,7 +20,7 @@ export class CreateUserComponent {
       '',
       [Validators.required],
     ),
-    lastaname: new FormControl(
+    lastname: new FormControl(
       '',
       [Validators.required]
     ),
@@ -48,6 +48,10 @@ export class CreateUserComponent {
       '',
       [Validators.required]
     ),
+    photo: new FormControl(
+      '',
+      [Validators.required]
+    ),
     user_type: new FormControl(
       '',
       [Validators.required]
@@ -67,6 +71,7 @@ export class CreateUserComponent {
 
   saveUser(): void {
     this.valuesUserForm = this.createUserForm.value;
+    console.log( this.valuesUserForm );
     //Verificamos si los campos fueron validados correctamente
     if( this.createUserForm.valid ){
       //Activamos el indicador de carga
