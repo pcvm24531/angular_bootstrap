@@ -20,8 +20,6 @@ export default class LoginComponent {
   tittleName: string = '';
   buttonName: string = '';
   typeButton: string = 'submit';
-  isLoadinge: boolean = false;
-
 
   isLoading: boolean = false;
   errorMessage: string = "";

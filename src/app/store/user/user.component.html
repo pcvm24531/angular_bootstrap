@@ -1,9 +1,11 @@
+<app-spinner [isLoading]="isLoading" />
 <section>
     <app-title [tittleName]="'Usuarios'"></app-title>
     <app-button
       [buttonName]="'Añadir Usuario'"
       (eventClick)="addUser($event)"
       [iconName]="'add'"
+      [disabled]="disabled"
       ></app-button>
 </section>
 <div class="list-container" >
@@ -36,7 +38,7 @@
             </th>
           </tr>
         </thead>
-        <tbody *ngIf="!loading && !errorMessage" >
+        <tbody *ngIf="!isLoading && !errorMessage" >
           <tr *ngFor="let user of users">
             <td class="py-3 px-5 border-b border-blue-gray-50">
               <div class="flex items-center gap-4">
