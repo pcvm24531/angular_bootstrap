@@ -5,18 +5,20 @@ import { ButtonComponent } from "../../shared/components/button/button.component
 import { TitleComponent } from '../../shared/components/title/title.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateUserComponent } from './create/createUser.component';
+import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [CommonModule, ButtonComponent, TitleComponent],
+  imports: [CommonModule, ButtonComponent, TitleComponent, SpinnerComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
 export default class UserComponent implements OnInit{
   users: any[] = [];//alamcenamos la lista de usuarios
-  loading: boolean = true;//Controlamos la carga de datos
+  isLoading: boolean = false;//Controlamos la carga de datos
   errorMessage: String | null = null;//Alamcenamos mensajes de error
+  disabled: boolean = false;
 
   constructor(private userService: UserService, private dialog: MatDialog){}
 
@@ -27,15 +29,15 @@ export default class UserComponent implements OnInit{
 
   //Función que obtiene los usuarios
   fetchUsers(): void{
-    this.loading = true;
+    this.isLoading = true;
     this.userService.getAllUsers().subscribe( {
       next: (response)=>{
         this.users = response;
-        this.loading = false;
+        this.isLoading = false;
       },
       error: (error)=>{
         this.errorMessage = 'No se pudo cargar los usuarios(.ts)';
-        this.loading = false;
+        this.isLoading = false;
       }
     } );
   }
