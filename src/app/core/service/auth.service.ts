@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from '../../../environmets';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root'//Permitimos que el servicio sea accesible en toda la aplicación
 })
 export class AuthService {
   private LOGIN_URL= environment.BASE_URL+"login";
   private tokenkey = 'tokenJS';
+  private userData = new BehaviorSubject<any>(null);
 
   constructor( private httpClient: HttpClient, private router: Router) { }
 
@@ -34,6 +35,18 @@ export class AuthService {
     return localStorage.getItem(this.tokenkey);
   }
 
+  //Observable para que los componentes puedan suscribirse a los cambios
+  userData$ = this.userData.asObservable();
+
+  //Método para actualizar los datos del usuario
+  setUserData(data: any){
+    this.userData.next(data);
+  }
+  //Método para obtener los datos actuales del usuario
+  getUserData(){
+    return this.userData.getValue();
+  }
+
   //verificamos si esta autenticado/validar tiempo de validez/si el token existe en el ocalstorage
   isAuthenticated(): boolean{
     const token = this.getToken();
@@ -51,4 +64,6 @@ export class AuthService {
     localStorage.removeItem(this.tokenkey);
     this.router.navigate(['/login']);
   }
+
+  //
 }

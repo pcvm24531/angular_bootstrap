@@ -1,150 +1,64 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserService } from "../../../core/service/user.service";
+import { ButtonComponent } from '../../../shared/components/button/button.component';
+import { TitleComponent } from '../../../shared/components/title/title.component';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { UserService } from '../../../core/service/user.service';
 
 @Component({
-  selector: 'app-create',
+  selector: 'app-create-user',
   standalone: true,
-  imports: [],
+  imports: [ButtonComponent, TitleComponent, ReactiveFormsModule],
   templateUrl: './createUser.component.html',
   styleUrl: './createUser.component.css'
 })
 export class CreateUserComponent {
 
+
+  //Ceamos las reglas de validacion
   createUserForm: FormGroup = new FormGroup({
     name: new FormControl(
       '',
+      [Validators.required],
+    ),
+    lastname: new FormControl(
+      '',
       [Validators.required]
     ),
-    description: new FormControl(
+    ci: new FormControl(
       '',
-      [
-        Validators.required,
-        Validators.minLength(10)
-      ]
+      [Validators.required]
     ),
-    category: new FormControl(
+    username: new FormControl(
       '',
-      [
-        Validators.required,
-      ]
+      [Validators.required]
     ),
-    active_ingredient: new FormControl(
+    password: new FormControl(
       '',
-      [
-        Validators.required,
-      ]
+      [Validators.required]
     ),
-    concentration: new FormControl(
+    phone: new FormControl(
       '',
-      [
-        Validators.required,
-      ]
+      [Validators.required, Validators.pattern('^[0-9]{10}')]
     ),
-    farmaceutical_form: new FormControl(
+    address: new FormControl(
       '',
-      [
-        Validators.required,
-      ]
+      [Validators.required, Validators.minLength(10), Validators.maxLength(200)]
     ),
-    quantity_per_unit: new FormControl(
+    birthdate: new FormControl(
       '',
-      [
-        Validators.required,
-      ]
+      [Validators.required]
     ),
-    manufacturing_date: new FormControl(
+    photo: new FormControl(
       '',
-      [
-        Validators.required,
-      ]
+      [Validators.required]
     ),
-    expiration_date: new FormControl(
+    user_type: new FormControl(
       '',
-      [
-        Validators.required,
-      ]
-    ),
-    lot_number: new FormControl(
-      '',
-      [
-        Validators.required,
-      ]
-    ),
-    manufacturer: new FormControl(
-      '',
-      [
-        Validators.required,
-      ]
-    ),
-    purchase_price: new FormControl(
-      '',
-      [
-        Validators.required,
-      ]
-    ),
-    sale_price: new FormControl(
-      '',
-      [
-        Validators.required,
-      ]
-    ),
-    current_stock: new FormControl(
-      '',
-      [
-        Validators.required,
-      ]
-    ),
-    minimun_stock: new FormControl(
-      '',
-      [
-        Validators.required,
-      ]
-    ),
-    location: new FormControl(
-      '',
-      [
-        Validators.required,
-      ]
-    ),
-    sanitary_record: new FormControl(
-      '',
-      [
-        Validators.required,
-      ]
-    ),
-    storage_conditions: new FormControl(
-      '',
-      [
-        Validators.required,
-      ]
-    ),
-    free_sale: new FormControl(
-      '',
-      [
-        Validators.required,
-      ]
-    ),
-    warning: new FormControl(
-      '',
-      [
-        Validators.required,
-      ]
-    ),
-    supplier: new FormControl(
-      '',
-      [
-        Validators.required,
-      ]
-    ),
-    supplier_contact: new FormControl(
-      '',
-      [
-        Validators.required,
-      ]
+      [Validators.required]
     ),
   });
+  //Finaliza las reglas de validación
 
   isLoading: boolean = false;
   errorMessage: string | null = null;
@@ -154,7 +68,41 @@ export class CreateUserComponent {
 
   constructor( private userService: UserService, private fb: FormBuilder, private dialogRef: MatDialogRef<CreateUserComponent>){}
 
-  valuesUsersForm: any;
+  valuesUserForm: any;
 
+  saveUser(): void {
+    this.valuesUserForm = this.createUserForm.value;
+    console.log( this.valuesUserForm );
+    //Verificamos si los campos fueron validados correctamente
+    if( this.createUserForm.valid ){
+      //Activamos el indicador de carga
+      this.isLoading = true;
+      //Capturamos los datos del formulario
+      const formData = this.createUserForm.value;
 
+      //Llamada al servicio para enviar los datos del formulario via POST
+      this.userService.saveUser(formData).subscribe(
+        {
+          next: (response)=>{
+            this.close();
+            this.createUserForm.reset();
+            this.isLoading = false;
+            this.userAdded.emit('userAdded');//Notificamos al componente padre
+          },
+          error: (err)=>{
+            console.log('Error al guardar el usuario ', err);
+            this.isLoading = false;
+          }
+        }
+      );
+    }else{
+      console.log('Formulario inválido, por favor revisa los campos');
+      this.isLoading = false;
+    }
+  }
+
+  //Cerramos el modal
+  close(): void{
+    this.dialogRef.close();
+  }
 }
