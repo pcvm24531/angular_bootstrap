@@ -18,7 +18,6 @@ export class AuthService {
   login(username: string, password:string): Observable<any> {
     return this.httpClient.post<any>(this.LOGIN_URL, {username, password}).pipe(
       tap(response => {
-        console.log('Response:', response);
         if( response.token ){
           this.setToken(response.token);
         }

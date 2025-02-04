@@ -14,6 +14,7 @@ import { UserService } from '../../../core/service/user.service';
 })
 export class CreateUserComponent {
 
+
   //Ceamos las reglas de validacion
   createUserForm: FormGroup = new FormGroup({
     name: new FormControl(

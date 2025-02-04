@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AuthService } from '../../../core/service/auth.service';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { TitleComponent } from "../../../shared/components/title/title.component";
@@ -20,7 +20,6 @@ export default class LoginComponent {
   tittleName: string = '';
   buttonName: string = '';
   typeButton: string = 'submit';
-
 
   isLoading: boolean = false;
   errorMessage: string = "";
@@ -41,6 +40,7 @@ export default class LoginComponent {
   //Metodo que invoca el login del authService
   //Se accede desde el boton del formulario
   login(): void{
+    this.isLoading = true;
     //Verificamos si los datos del formulario se completaron
     if( this.loginForm.value ){
       //Hacemos la verificación del login
@@ -49,10 +49,12 @@ export default class LoginComponent {
           next: ()=>{
             this.isLoading = false;
             this.router.navigate(['/dashboard']);
+            this.isLoading = false;
           },
           error: (err) => {
             this.isLoading = false;
             this.errorMessage='El Usuario o Contraseña son inválidos!';
+            this.isLoading = false;
           }
         }
       )
