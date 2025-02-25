@@ -13,6 +13,11 @@ export class UserService {
 
   constructor( private httpClient: HttpClient, private router: Router ) { }
 
+  //Método que obtiene usuarios por id
+  getUserById(id: string): Observable<any>{
+    return this.httpClient.get<any>(this.USER_URL+"/"+id);
+  }
+
   //Método que obtiene todos los usuarios
   getAllUsers(): Observable<any>{
     return this.httpClient.get<any>(this.USER_URL);

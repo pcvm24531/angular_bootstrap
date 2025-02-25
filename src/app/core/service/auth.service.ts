@@ -47,6 +47,13 @@ export class AuthService {
     return this.userData.getValue();
   }
 
+  getUserId(){
+    const token = this.getToken();
+    if (!token) {return null;}
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.id;
+  }
+
   //verificamos si esta autenticado/validar tiempo de validez/si el token existe en el ocalstorage
   isAuthenticated(): boolean{
     const token = this.getToken();

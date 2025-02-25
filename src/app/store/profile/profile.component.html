@@ -8,34 +8,34 @@
 
   <!-- Foto del Empleado -->
   <div class="flex justify-center mb-6">
-    <img src="https://via.placeholder.com/150" alt="Foto del Empleado" class="w-32 h-32 rounded-full border-4 border-blue-500">
+    <img src="" alt="Foto del Empleado" class="w-32 h-32 rounded-full border-4 border-blue-500">
   </div>
 
   <!-- Información del Empleado -->
   <div class="space-y-4">
     <div>
       <label class="block text-sm font-medium text-gray-700">Nombre:</label>
-      <p class="mt-1 text-lg font-semibold text-gray-900">Juan Pérez</p>
+      <p class="mt-1 text-lg font-semibold text-gray-900">{{user.name}} {{user.lastname}}</p>
     </div>
 
     <div>
       <label class="block text-sm font-medium text-gray-700">Cargo:</label>
-      <p class="mt-1 text-lg font-semibold text-gray-900">Farmacéutico</p>
+      <p class="mt-1 text-lg font-semibold text-gray-900">{{user.user_type}}</p>
     </div>
 
     <div>
-      <label class="block text-sm font-medium text-gray-700">ID de Empleado:</label>
-      <p class="mt-1 text-lg font-semibold text-gray-900">#12345</p>
+      <label class="block text-sm font-medium text-gray-700">CI de Empleado:</label>
+      <p class="mt-1 text-lg font-semibold text-gray-900">#{{user.ci}}</p>
     </div>
 
     <div>
       <label class="block text-sm font-medium text-gray-700">Correo Electrónico:</label>
-      <p class="mt-1 text-lg font-semibold text-gray-900">juan.perezfarmaciaxyz.com</p>
+      <p class="mt-1 text-lg font-semibold text-gray-900">{{user.email}}</p>
     </div>
 
     <div>
       <label class="block text-sm font-medium text-gray-700">Teléfono:</label>
-      <p class="mt-1 text-lg font-semibold text-gray-900">+1 234 567 890</p>
+      <p class="mt-1 text-lg font-semibold text-gray-900">+591 {{user.phone}}</p>
     </div>
 
     <div>
