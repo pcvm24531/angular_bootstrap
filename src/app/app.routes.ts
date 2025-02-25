@@ -5,20 +5,25 @@ import ProfileComponent from './store/profile/profile.component';
 import SaleComponent from './store/sale/sale.component';
 import { CreateClientComponent } from './store/client/create/createClient.component';
 import UserComponent from './store/user/user.component';
+import DashboardComponent from "./store/dashboard/dashboard.component";
+import LayoutComponent from './shared/components/layout/layout.component';
+import ClientComponent from './store/client/client.component';
+import ProductComponent from './store/product/product.component';
+import LoginComponent from './store/authentication/login/login.component';
 
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: ()=>import('./shared/components/layout/layout.component'),//Importamos el componente principal(global)
+    component: LayoutComponent,
     children: [
       {
         path: 'dashboard',
-        loadComponent: () => import('./store/dashboard/dashboard.component'),
+        component: DashboardComponent,
         canActivate: [AuthGuard]
       },
       {
         path: 'client',
-        loadComponent: ()=>import('./store/client/client.component'),
+        component: ClientComponent,
         canActivate: [AuthGuard],
         children:[
           {
@@ -30,7 +35,7 @@ export const routes: Routes = [
       },
       {
         path: 'product',
-        loadComponent: ()=>import('./store/product/product.component'),
+        component: ProductComponent,
         canActivate: [AuthGuard]
       },
       {
@@ -57,7 +62,7 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    loadComponent: ()=>import('./store/authentication/login/login.component'),
+    component: LoginComponent,
     canActivate: [AuthenticatedGuard]
   },
   {
