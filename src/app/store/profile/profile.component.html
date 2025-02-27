@@ -1,6 +1,4 @@
-
-
-  <!-- Encabezado -->
+<!-- Encabezado -->
   <div class="text-center mb-6">
     <h1 class="text-2xl font-bold text-gray-800">Perfil del Empleado</h1>
     <p class="text-gray-600">Farmacia o Almacén XYZ</p>
@@ -15,27 +13,27 @@
   <div class="space-y-4">
     <div>
       <label class="block text-sm font-medium text-gray-700">Nombre:</label>
-      <p class="mt-1 text-lg font-semibold text-gray-900">{{user.name}} {{user.lastname}}</p>
+      <p class="mt-1 text-lg font-semibold text-gray-900">{{user?.name}} {{user?.lastname}}</p>
     </div>
 
     <div>
       <label class="block text-sm font-medium text-gray-700">Cargo:</label>
-      <p class="mt-1 text-lg font-semibold text-gray-900">{{user.user_type}}</p>
+      <p class="mt-1 text-lg font-semibold text-gray-900">{{user?.user_type}}</p>
     </div>
 
     <div>
       <label class="block text-sm font-medium text-gray-700">CI de Empleado:</label>
-      <p class="mt-1 text-lg font-semibold text-gray-900">#{{user.ci}}</p>
+      <p class="mt-1 text-lg font-semibold text-gray-900">#{{user?.ci}}</p>
     </div>
 
     <div>
       <label class="block text-sm font-medium text-gray-700">Correo Electrónico:</label>
-      <p class="mt-1 text-lg font-semibold text-gray-900">{{user.email}}</p>
+      <p class="mt-1 text-lg font-semibold text-gray-900">{{user?.email}}</p>
     </div>
 
     <div>
       <label class="block text-sm font-medium text-gray-700">Teléfono:</label>
-      <p class="mt-1 text-lg font-semibold text-gray-900">+591 {{user.phone}}</p>
+      <p class="mt-1 text-lg font-semibold text-gray-900">+591 {{user?.phone}}</p>
     </div>
 
     <div>
@@ -46,8 +44,10 @@
 
   <!-- Botón de Contacto -->
   <div class="mt-6 text-center">
-    <a href="mailto:juan.perez@farmaciaxyz.com" class="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
-      Contactar
+    <a href=""
+      title="Editar Perfil"
+      class="inline-block bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+      Editar
     </a>
   </div>
 

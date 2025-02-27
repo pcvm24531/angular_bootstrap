@@ -58,6 +58,7 @@ export class AuthService {
   isAuthenticated(): boolean{
     const token = this.getToken();
     if (!token) {
+      //this.logout();
       return false;
     }
 
@@ -66,6 +67,7 @@ export class AuthService {
 
     //Verificamos si el token ha expirado
     if( Date.now() > exp ){
+      //this.logout();
       return false;
     }
 
@@ -76,7 +78,7 @@ export class AuthService {
       const timeSinceLasrActivity = Date.now() - Number(lastActivity);
 
       //Si el usuario esta inactivo por más de 30 min
-      if(timeSinceLasrActivity > inactivityLimit){
+      if(timeSinceLasrActivity > inactivityLimit){console.log('inactivooooo');
         this.logout();
         return false;
       }
@@ -84,13 +86,14 @@ export class AuthService {
 
     //Actualizamos la última actividad
     localStorage.setItem('lastActivity', Date.now().toString());
-
-     return true;
+    return true;
   }
 
   //Cerrar sesion
   logout(): void{
     localStorage.removeItem(this.tokenkey);
+    localStorage.removeItem('lastActivity');
+    this.setUserData(null);
     this.router.navigate(['/login']);
   }
 
