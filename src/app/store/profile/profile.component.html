@@ -1,1 +1,53 @@
-<p>profile works!</p>
+<!-- Encabezado -->
+  <div class="text-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">Perfil del Empleado</h1>
+    <p class="text-gray-600">Farmacia o Almacén XYZ</p>
+  </div>
+
+  <!-- Foto del Empleado -->
+  <div class="flex justify-center mb-6">
+    <img src="" alt="Foto del Empleado" class="w-32 h-32 rounded-full border-4 border-blue-500">
+  </div>
+
+  <!-- Información del Empleado -->
+  <div class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Nombre:</label>
+      <p class="mt-1 text-lg font-semibold text-gray-900">{{user?.name}} {{user?.lastname}}</p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Cargo:</label>
+      <p class="mt-1 text-lg font-semibold text-gray-900">{{user?.user_type}}</p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">CI de Empleado:</label>
+      <p class="mt-1 text-lg font-semibold text-gray-900">#{{user?.ci}}</p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Correo Electrónico:</label>
+      <p class="mt-1 text-lg font-semibold text-gray-900">{{user?.email}}</p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Teléfono:</label>
+      <p class="mt-1 text-lg font-semibold text-gray-900">+591 {{user?.phone}}</p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Horario de Trabajo:</label>
+      <p class="mt-1 text-lg font-semibold text-gray-900">Lunes a Viernes, 9:00 AM - 6:00 PM</p>
+    </div>
+  </div>
+
+  <!-- Botón de Contacto -->
+  <div class="mt-6 text-center">
+    <a href=""
+      title="Editar Perfil"
+      class="inline-block bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+      Editar
+    </a>
+  </div>
+

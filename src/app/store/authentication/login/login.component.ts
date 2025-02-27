@@ -44,17 +44,16 @@ export default class LoginComponent {
     //Verificamos si los datos del formulario se completaron
     if( this.loginForm.value ){
       //Hacemos la verificación del login
-      this.authServie.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(
+      this.authServie.login(this.loginForm.value.username, this.loginForm.value.password)
+        .subscribe(
         {
           next: ()=>{
             this.isLoading = false;
             this.router.navigate(['/dashboard']);
-            this.isLoading = false;
           },
           error: (err) => {
             this.isLoading = false;
             this.errorMessage='El Usuario o Contraseña son inválidos!';
-            this.isLoading = false;
           }
         }
       )
