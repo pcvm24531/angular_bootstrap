@@ -15,7 +15,7 @@ export class UserService {
 
   //Método que obtiene usuarios por id
   getUserById(id: string): Observable<any>{
-    return this.httpClient.get<any>(this.USER_URL+"/"+id);
+    return this.httpClient.get<any>(`${this.USER_URL}/${id}`);
   }
 
   //Método que obtiene todos los usuarios
@@ -25,5 +25,9 @@ export class UserService {
   //Método que guarda un nuevo usuario
   saveUser(newUser: any): Observable<any>{
     return this.httpClient.post<any>(this.USER_URL, newUser)
+  }
+  //Eliminar usuario
+  deleteUser(id: string): Observable<any>{
+    return this.httpClient.delete<any>(`${this.USER_URL}/${id}`);
   }
 }

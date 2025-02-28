@@ -3,11 +3,12 @@ import { ClientService } from '../../../core/service/client.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TitleComponent } from "../../../shared/components/title/title.component";
 import { ButtonComponent } from "../../../shared/components/button/button.component";
+import { SpinnerComponent } from "../../../shared/components/spinner/spinner.component";
 
 @Component({
   selector: 'app-read-client',
   standalone: true,
-  imports: [TitleComponent, ButtonComponent],
+  imports: [TitleComponent, ButtonComponent, SpinnerComponent],
   templateUrl: './readClient.component.html',
   styleUrl: './readClient.component.css'
 })

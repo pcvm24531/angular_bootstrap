@@ -6,6 +6,8 @@ import { TitleComponent } from '../../shared/components/title/title.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateUserComponent } from './create/createUser.component';
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
+import { DeleteUserComponent } from './delete/deleteUser.component';
+
 
 @Component({
   selector: 'app-user',
@@ -58,4 +60,14 @@ export default class UserComponent implements OnInit{
      } );
   }
 
+
+  //Eliminamos al usuario
+  deleteUser(event: MouseEvent, user: any): void{
+    const deleteUser = this.dialog.open(DeleteUserComponent, {width: '780px', disableClose: true, data: user});
+    deleteUser.componentInstance.userDeleted.subscribe( (event: string)=>{
+      if( event==='userDeleted' ){
+        this.fetchUsers();
+      }
+    });
+  }
 }

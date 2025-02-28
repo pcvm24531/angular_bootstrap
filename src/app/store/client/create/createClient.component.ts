@@ -4,11 +4,12 @@ import { MatDialogRef } from "@angular/material/dialog";
 import { ButtonComponent } from "../../../shared/components/button/button.component";
 import { TitleComponent } from "../../../shared/components/title/title.component";
 import { ClientService } from '../../../core/service/client.service';
+import { SpinnerComponent } from "../../../shared/components/spinner/spinner.component";
 
 @Component({
   selector: 'app-create-client',
   standalone: true,
-  imports: [ButtonComponent, TitleComponent, ReactiveFormsModule],
+  imports: [ButtonComponent, TitleComponent, ReactiveFormsModule, SpinnerComponent],
   templateUrl: './createClient.component.html',
   styleUrl: './createClient.component.css'
 })
@@ -27,7 +28,7 @@ export class CreateClientComponent {
       '',
       [
         Validators.required,
-        Validators.pattern('^[0-9]{10}'),
+        Validators.pattern('^[0-9]{7}'),
         Validators.minLength(5),
         Validators.maxLength(10)
       ]

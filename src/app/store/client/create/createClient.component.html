@@ -1,3 +1,4 @@
+<app-spinner [isLoading]="isLoading"/>
 
 <section>
   <app-title [tittleName]="'Nuevo Cliente'"></app-title>
@@ -41,8 +42,13 @@
       </div>
 
       <div class="py-2 flex items-center space-x-4">
-        <app-button [buttonName]="'Guardar'" [iconName]="'save'"  [buttonColor]="'green'" [typeButton]="'submit'" (eventClick)="saveClient()" />
-        <app-button [buttonName]="'Cerrar'" [iconName]="'close'" (eventClick)="close()" [buttonColor]="'red'" />
+        <app-button [buttonName]="'Guardar'" [iconName]="'save'"
+         [buttonColor]="'green'" [typeButton]="'submit'" (eventClick)="saveClient()"
+         [disabled]="!createClientForm.valid"
+          />
+        <app-button [buttonName]="'Cerrar'" [iconName]="'close'" (eventClick)="close()" [buttonColor]="'red'"
+          [disabled]="false"
+        />
       </div>
 
     </form>
