@@ -49,8 +49,9 @@ export default class UserComponent implements OnInit{
     const dialogAdd = this.dialog.open(
       CreateUserComponent,
       {
-        width: '780px',
-        disableClose: true
+        width: '780px', // Ancho personalizado
+        disableClose: true, // Evita que el modal se cierre al hacer clic fuera
+        autoFocus: false, // Evita el enfoque automático
       }
      );
      dialogAdd.componentInstance.userAdded.subscribe( (event: string)=>{
