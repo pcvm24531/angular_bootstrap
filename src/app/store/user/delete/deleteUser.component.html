@@ -1,0 +1,25 @@
+<app-spinner [isLoading]="isLoading" />
+<section>
+  <app-title [tittleName]="'Eliminar Usuario'" />
+</section>
+<section>
+  <div class="px-4">
+    <label class="block text-sm font-medium text-gray-700">Realmente desea elimnar al usuario?</label>
+  </div>
+  <div class="py-2 flex items-center space-x-4">
+    <app-button
+      [buttonName]="'Eliminar'"
+      [iconName]="'delete'"
+      (eventClick)="deletedUser()"
+      [buttonColor]="'green'"
+      [disabled]="false"
+    />
+    <app-button
+      [buttonName]="'Cancelar'"
+      [iconName]="'close'"
+      (eventClick)="close()"
+      [buttonColor]="'red'"
+      [disabled]="false"
+    />
+  </div>
+</section>

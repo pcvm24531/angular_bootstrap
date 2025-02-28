@@ -5,12 +5,13 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { ClientService } from '../../../core/service/client.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SpinnerComponent } from "../../../shared/components/spinner/spinner.component";
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-update-client',
   standalone: true,
-  imports: [TitleComponent, ButtonComponent, ReactiveFormsModule],
+  imports: [TitleComponent, ButtonComponent, ReactiveFormsModule, SpinnerComponent],
   templateUrl: './updateClient.component.html',
   styleUrl: './updateClient.component.css'
 })
@@ -32,12 +33,12 @@ export class UpdateClientComponent {
     this.updateClientForm = this.fb.group( {
       name: [data.name,[Validators.required]],
       lastname: [data.lastname,[Validators.required]],
-      ci: [data.ci,[Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      ci: [data.ci,[Validators.required, Validators.pattern('^[0-9]{7}$')]],
     } );
   }
 
   updateClient(): void{
-  
+
     if( this.updateClientForm.valid ){
       this.isLoading = true;
       const formData = this.updateClientForm.value

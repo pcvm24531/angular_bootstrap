@@ -14,13 +14,14 @@ import { UserService } from '../../../core/service/user.service';
 })
 export class CreateUserComponent {
 
+
   //Ceamos las reglas de validacion
   createUserForm: FormGroup = new FormGroup({
     name: new FormControl(
       '',
       [Validators.required],
     ),
-    lastaname: new FormControl(
+    lastname: new FormControl(
       '',
       [Validators.required]
     ),
@@ -48,6 +49,10 @@ export class CreateUserComponent {
       '',
       [Validators.required]
     ),
+    photo: new FormControl(
+      '',
+      [Validators.required]
+    ),
     user_type: new FormControl(
       '',
       [Validators.required]
@@ -64,9 +69,16 @@ export class CreateUserComponent {
   constructor( private userService: UserService, private fb: FormBuilder, private dialogRef: MatDialogRef<CreateUserComponent>){}
 
   valuesUserForm: any;
+  selectedFile: File | null = null;
+
+  //   FUnción para cargar imagen
+  inFileSelected(event: any): void {
+    this.selectedFile = event?.target.files[0] as File;
+  }
 
   saveUser(): void {
     this.valuesUserForm = this.createUserForm.value;
+    console.log( this.valuesUserForm );
     //Verificamos si los campos fueron validados correctamente
     if( this.createUserForm.valid ){
       //Activamos el indicador de carga
@@ -99,4 +111,5 @@ export class CreateUserComponent {
   close(): void{
     this.dialogRef.close();
   }
+
 }

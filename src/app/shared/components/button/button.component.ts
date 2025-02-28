@@ -14,6 +14,7 @@ export class ButtonComponent {
   @Input() iconName: string = 'home';
   @Input() buttonColor: string = 'btn btn-default';
   @Input() typeButton: string = 'button';
+  @Input() disabled: boolean = true;
 
   //Eventos del botón
   @Output() eventClick: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>;
@@ -22,4 +23,6 @@ export class ButtonComponent {
   onclick(event: MouseEvent){
     this.eventClick.emit(event);
   }
+
+
 }
