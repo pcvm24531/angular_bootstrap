@@ -69,6 +69,12 @@ export class CreateUserComponent {
   constructor( private userService: UserService, private fb: FormBuilder, private dialogRef: MatDialogRef<CreateUserComponent>){}
 
   valuesUserForm: any;
+  selectedFile: File | null = null;
+
+  //   FUnción para cargar imagen
+  inFileSelected(event: any): void {
+    this.selectedFile = event?.target.files[0] as File;
+  }
 
   saveUser(): void {
     this.valuesUserForm = this.createUserForm.value;
@@ -105,4 +111,5 @@ export class CreateUserComponent {
   close(): void{
     this.dialogRef.close();
   }
+
 }

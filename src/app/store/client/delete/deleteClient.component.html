@@ -8,8 +8,8 @@
 
   <div class="py-2 flex items-center space-x-4">
     <app-button [buttonName]="'Eliminar'" [iconName]="'delete'"
-      (eventClick)="deletedClient()" [buttonColor]="'green'" />
+      (eventClick)="deletedClient()" [buttonColor]="'green'" [disabled]="false" />
       <app-button [buttonName]="'Cancelar'" [iconName]="'close'"
-      (eventClick)="close()" [buttonColor]="'red'" />
+      (eventClick)="close()" [buttonColor]="'red'" [disabled]="false"/>
   </div>
 </section>
